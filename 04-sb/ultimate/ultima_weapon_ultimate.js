@@ -512,6 +512,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Ifrit ${dir}',
+          de: 'Ifrit ${dir}',
           cn: '火神 ${dir}',
           ko: '이프리트 ${dir}',
         },
@@ -738,6 +739,24 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 1',
+      // TODO: we could add a config option for the other set of safe spots, as it's also
+      // valid to go SW/NE instead of SE/NW for the first dashes. It would just change
+      // the adjust call.
+      comment: {
+        en: `If the first nail is SE, this will call SE/NW for both reverse-Z and normal-Z.
+             If the first nail is S, this will call SE/NW for reverse-Z and SW/NE for normal-Z.
+             Other nail orders are also supported, these are just examples.`,
+        de:
+          `Wenn der erste Nagel SO ist, wird dies SO/NW sowohl für Umgekehrtes-Z als auch für Normal-Z aufgerufen.
+             Wenn der erste Nagel S ist, wird dies SO/NW für Umgekehrtes-Z und SW/NO für Normal-Z aufgerufen.
+             Andere Nagelreihenfolgen werden ebenfalls unterstützt, dies sind nur Beispiele.`,
+        cn: `如果第一个火神柱在东南，则反向 Z 和正常 Z 都会提示东南/西北
+             如果第一个火神柱在南, 则反向 Z 将提示东南/西北，正常 Z 将提示西南/东北。
+             这些只是示例, 还支持其他火神柱顺序。`,
+        ko: `첫 번째 기둥이 남동쪽인 경우, 역방향 Z와 일반 Z 모두에 대해 남동/북서를 호출합니다.
+             첫 번째 기둥이 남쪽인 경우, 역방향 Z는 남동/북서를, 일반 Z는 남서/북동를 호출합니다.
+             다른 기둥 순서도 지원되며, 이는 예시일 뿐입니다.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       condition: (data) => data.ifritUntargetableCount === 1,
@@ -773,6 +792,21 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 2 Adjust',
+      comment: {
+        en: `If the first nail was on an intercard, then the first Ifrit dash is on an intercard
+             and this optional call is to move to be adjacent to that first dash.
+             If you are already safe, this will not be called.`,
+        de:
+          `Wenn der erste Nagel Interkardinal war, dann ist der erste Ifrit-Ansturm auf einer Interkardinalen
+             und dieser optionale Aufruf besteht darin, sich in die Nähe dieses ersten Ansturms zu bewegen.
+             Wenn man bereits in Sicherheit ist, wird dies nicht aufgerufen.`,
+        cn: `如果第一个火神柱在对角线上，那么第一次火神冲也在对角线上。
+             这个可选提示会提示你移动到第一次火神冲附近的位置。
+             如果你已在安全区，则不会输出此提示。`,
+        ko: `첫 번째 기둥이 대각선에 있으면 첫 번째 이프리트 돌진도 대각선에 있으며,
+             이 알람은 첫 번째 돌진 옆으로 이동하라는 것이 됩니다.
+             이미 안전하다면 이 알람은 호출되지 않습니다.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       // Unfortunately no way to know for sure if Ifrit dies before dashes.
@@ -805,6 +839,25 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 2',
+      comment: {
+        en: `This is the major movement for the Ifrit dashes starting adjacent to the first dash.
+             Both the party and the healer will move either 45 or 90 degrees.
+             It is a "fast" movement if you need to move fast to avoid the Ifrit follow-up dash.
+             It is a "slow" movement if you have extra time to do this.`,
+        de:
+          `Dies ist die Hauptbewegung für die Ifrit-Anstürme, die in der Nähe des ersten Ansturms beginnt.
+             Sowohl die Gruppe als auch der Heiler bewegen sich entweder um 45 oder 90 Grad.
+             Es ist eine "schnelle" Bewegung, wenn man sich schnell bewegen muss, um dem Ifrit-Folgeschlag auszuweichen.
+             Es ist eine "langsame" Bewegung, wenn man mehr Zeit hat, dies zu tun.`,
+        cn: `这是从第一次火神冲附近开始的火神冲主要移动。
+             人群和奶妈都将移动 45 度或 90 度。
+             "快" 可以让你快速移动，躲避第二次火神冲。
+             "慢" 当你有足够的时间来移动时使用。`,
+        ko: `첫 번째 돌진 직후부터 시작되는 이프리트 돌진의 주요 동선입니다.
+             본대와 힐러 모두 45도 또는 90도로 움직입니다.
+             이프리트의 후속 돌진을 피하기 위해 빠르게 이동해야 하는 경우 "빠른" 이동입니다.
+             시간적 여유가 있다면 "느린" 이동입니다.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       condition: (data) => data.ifritUntargetableCount === 2 && data.ifritAwoken,
@@ -841,7 +894,7 @@ Options.Triggers.push({
         const rotationDir = rotationType === 'cw' ? 1 : -1;
         const startDir = (firstNailDir + oppositeRotationDir + 8) % 8;
         const ifritDir = Directions.combatantStatePosTo8Dir(combatant, centerX, centerY);
-        for (let i = 1; i < 4; ++i) {
+        for (let i = 1; i <= 4; ++i) {
           const dashDir = (startDir + i * rotationDir + 8) % 8;
           if (dashDir % 4 !== ifritDir % 4)
             continue;
@@ -865,25 +918,25 @@ Options.Triggers.push({
           en: '${rotation} 45° to ${dir} (fast)',
           de: '${rotation} 45° nach ${dir} (schnell)',
           cn: '${rotation} 45° 到 ${dir} (快)',
-          ko: '${rotation} 45° ${dir}까지 (빠르게)',
+          ko: '${rotation} 45° ${dir}까지 (빠름)',
         },
         awokenDash2: {
           en: '${rotation} 90° to ${dir} (fast)',
           de: '${rotation} 90° nach ${dir} (schnell)',
           cn: '${rotation} 90° 到 ${dir} (快)',
-          ko: '${rotation} 90° ${dir}까지 (빠르게)',
+          ko: '${rotation} 90° ${dir}까지 (빠름)',
         },
         awokenDash3: {
           en: '${rotation} 45° to ${dir} (slow)',
           de: '${rotation} 45° nach ${dir} (langsam)',
           cn: '${rotation} 45° 到 ${dir} (慢)',
-          ko: '${rotation} 45° ${dir}까지 (천천히)',
+          ko: '${rotation} 45° ${dir}까지 (느림)',
         },
         awokenDash4: {
           en: '${rotation} 90° to ${dir} (slow)',
           de: '${rotation} 90° nach ${dir} (langsam)',
           cn: '${rotation} 90° 到 ${dir} (慢)',
-          ko: '${rotation} 90° ${dir}까지 (천천히)',
+          ko: '${rotation} 90° ${dir}까지 (느림)',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,

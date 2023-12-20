@@ -137,15 +137,23 @@ Options.Triggers.push({
       outputStrings: {
         northeast: {
           en: 'Inner northeast safe',
+          de: 'Innen nordöstlich sicher',
+          ko: '안쪽 북동 안전',
         },
         northwest: {
           en: 'Inner northwest safe',
+          de: 'Innen nordwestlich sicher',
+          ko: '안쪽 북서 안전',
         },
         southeast: {
           en: 'Inner southeast safe',
+          de: 'Innen südöstlich sicher',
+          ko: '안쪽 남동 안전',
         },
         southwest: {
           en: 'Inner southwest safe',
+          de: 'Innen südwestlich sicher',
+          ko: '안쪽 남서 안전',
         },
         unknown: Outputs.unknown,
       },
@@ -264,7 +272,9 @@ Options.Triggers.push({
       outputStrings: {
         avoid: {
           en: 'Away from orbs',
+          de: 'Weg von den Orbs',
           ja: '玉から離れて',
+          ko: '구슬에서 멀리 떨어지기',
         },
       },
     },
@@ -396,12 +406,12 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetheric Charge': 'magisch(?:e|er|es|en) Sphäre',
         'Damcyan Antlion': 'damcyanisch(?:e|er|es|en) Ameisenlöwe',
         'Dark Elf': 'Dunkelelf',
         'Durante': 'Durante',
+        'Hexing Staff': 'Stab der Dunkelheit',
         'Stone Pillar': 'Steinsäule',
         'The Bloodied Barbican': 'Schlosspforte',
         'The Carnelian Courtyard': 'Schlossgarten',
@@ -446,6 +456,7 @@ Options.Triggers.push({
         'Damcyan Antlion': 'fourmilion de Damcyan',
         'Dark Elf': 'Elfe noir',
         'Durante': 'Durante',
+        'Hexing Staff': 'canne des ténèbres',
         'Stone Pillar': 'colonne',
         'The Bloodied Barbican': 'Portes du château de Baron',
         'The Carnelian Courtyard': 'Cour du château de Baron',
@@ -488,6 +499,7 @@ Options.Triggers.push({
         'Damcyan Antlion': 'ダムシアン・アントリオン',
         'Dark Elf': 'ダークエルフ',
         'Durante': 'ドゥランテ',
+        'Hexing Staff': '闇の杖',
         'Stone Pillar': '石柱',
         'The Bloodied Barbican': 'バロン城正門',
         'The Carnelian Courtyard': 'バロン城中庭',
