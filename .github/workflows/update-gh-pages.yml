@@ -2,7 +2,11 @@ name: Update gh-pages
 
 on:
   push:
-    branches: [main]
+    branches: [ main, browser_tts ]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   check-gh-pages:
