@@ -1,6 +1,17 @@
+import * as googleTTS from 'google-tts-api';
+
 import { Lang } from '../../resources/languages';
 
-class TTSItem {
+const TTSEngineType = {
+  SpeechSynthesis: 0,
+  GoogleTTS: 1,
+};
+
+interface TTSItem {
+  play: () => void;
+}
+
+class SpeechTTSItem implements TTSItem {
   readonly text: string;
   readonly item: SpeechSynthesisUtterance;
 
@@ -18,18 +29,45 @@ class TTSItem {
   }
 }
 
+class GoogleTTSItem implements TTSItem {
+  readonly text: string;
+  readonly lang: string;
+  private readonly item: HTMLAudioElement | null = null;
+
+  constructor(text: string, lang: string) {
+    this.text = text;
+    this.lang = lang;
+    const audio = document.createElement('audio');
+    const url = googleTTS.getAudioUrl(text, { lang: lang });
+    audio.src = url;
+    document.body.appendChild(audio);
+    this.item = audio;
+  }
+
+  play() {
+    if (this.item)
+      void this.item.play();
+  }
+}
+
 type TTSItemDictionary = {
   [key: string]: TTSItem;
 };
 
 export default class BrowserTTSEngine {
   readonly ttsItems: TTSItemDictionary = {};
+  private readonly engineType = TTSEngineType.SpeechSynthesis;
+  private readonly googleTTSLang: string;
   private speechLang?: string;
   private speechVoice?: SpeechSynthesisVoice;
   private initializeAttempts = 0;
 
-  constructor(private cactbotLang: Lang) {
-    if (window.speechSynthesis !== undefined) {
+  constructor(private cactbotLang: Lang, private isRemote: boolean) {
+    this.googleTTSLang = cactbotLang === 'cn' ? 'zh' : cactbotLang;
+    if (!isRemote) {
+      this.engineType = TTSEngineType.GoogleTTS;
+      console.info('BrowserTTS info: running locally in Google TTS mode');
+    } else if (window.speechSynthesis !== undefined) {
       // https://bugs.chromium.org/p/chromium/issues/detail?id=334847
       window.speechSynthesis.getVoices();
       window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
@@ -38,6 +76,8 @@ export default class BrowserTTSEngine {
   }
 
   initializeVoice(): boolean {
+    if (!this.isRemote)
+      return true;
     if (window.speechSynthesis === undefined)
       return false;
     if (this.speechVoice !== undefined)
@@ -56,7 +96,7 @@ export default class BrowserTTSEngine {
       ko: 'ko-KR',
     };
 
-    // figure out what TTS engine type we need
+    // figure out what TTS voice type we need
     const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
     const voice = window.speechSynthesis.getVoices().find((voice) =>
       voice.lang.replaceAll('_', '-') === speechLang
@@ -79,14 +119,33 @@ export default class BrowserTTSEngine {
       return;
 
     try {
-      let ttsItem = this.ttsItems[text];
-      if (!ttsItem) {
-        ttsItem = new TTSItem(text, this.speechLang, this.speechVoice);
-        this.ttsItems[text] = ttsItem;
-      }
-      ttsItem.play();
+      const ttsItem = this.ttsItems[text];
+      ttsItem ? ttsItem.play() : this.playTTS(text);
     } catch (e) {
       console.error('Exception performing TTS', e);
     }
+  }
+
+  playTTS(text: string): void {
+    switch (this.engineType) {
+      case TTSEngineType.SpeechSynthesis:
+        this.playSpeechTTS(text);
+        break;
+      case TTSEngineType.GoogleTTS:
+        this.playGoogleTTS(text);
+        break;
+    }
+  }
+
+  playSpeechTTS(text: string): void {
+    const ttsItem = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
+    this.ttsItems[text] = ttsItem;
+    ttsItem.play();
+  }
+
+  playGoogleTTS(text: string): void {
+    const ttsItem = new GoogleTTSItem(text, this.googleTTSLang);
+    this.ttsItems[text] = ttsItem;
+    ttsItem.play();
   }
 }
