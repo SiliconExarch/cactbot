@@ -161,9 +161,11 @@
     "dexie": "^3.0.3",
     "dexie-export-import": "^1.0.0",
     "eventemitter3": "^4.0.7",
+    "google-tts-api": "^2.0.2",
     "inquirer": "^8.1.1",
     "inquirer-fuzzy-path": "^2.3.0",
-    "lodash": "^4.14.170"
+    "lodash": "^4.14.170",
+    "url": "^0.11.0"
   },
   "publishConfig": {
     "access": "public"
