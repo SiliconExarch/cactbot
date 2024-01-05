@@ -62,22 +62,27 @@ Options.Triggers.push({
         orbDirFront: {
           en: 'Face Towards Orb',
           de: 'Den Orb anschauen',
+          fr: 'Pointez l\'orbe',
         },
         orbDirBack: {
           en: 'Face Away from Orb',
           de: 'Weg vom Orb schauen',
+          fr: 'Ne pointez pas l\'orbe',
         },
         orbDirLeft: {
           en: 'Point Left at Orb',
           de: 'Zeige links auf den Orb',
+          fr: 'Pointez à gauche de l\'orbe',
         },
         orbDirRight: {
           en: 'Point Right at Orb',
           de: 'Zeige Rechts auf den Orb',
+          fr: 'Pointez à droite de l\'orbe',
         },
         orbGeneral: {
           en: 'Point opening at Orb',
           de: 'Zeige die Öffnung auf den Orb',
+          fr: 'Pointez l\'orbe',
         },
       },
     },
@@ -94,10 +99,12 @@ Options.Triggers.push({
           tankBusterOnYou: {
             en: '3x Tankbuster on YOU',
             de: '3x Tankbuster auf DIR',
+            fr: 'Tankbuster x3 sur VOUS',
           },
           tankBusterOnPlayer: {
             en: '3x Tankbuster on ${player}',
             de: '3x Tankbuster auf ${player}',
+            fr: 'Tankbuster x3 sur ${player}',
           },
         };
         if (matches.target === data.me)
@@ -239,10 +246,12 @@ Options.Triggers.push({
         fetters: {
           en: 'Fetters (w/${player})',
           de: 'Fesseln (mit ${player})',
+          fr: 'Entraves (avec ${player})',
         },
         bubble: {
           en: 'Bubble (w/${player})',
           de: 'Blase (mit ${player})',
+          fr: 'Bulles (avec ${player})',
         },
       },
     },
@@ -269,6 +278,11 @@ Options.Triggers.push({
              Quadranten wie der angegebene Kristall liegt.
              Der Einfachheit halber bedeutet "neben" immer horizontal östlich/westlich von etwas.
              Siehe Triggerquelle für Diagramme in den Kommentaren.`,
+        fr: `Ces instructions supposent que vous choisissez toujours une case dans le même
+             quadrant que le cristal spécifié.
+             Par souci de concision, "à côté de" signifie toujours horizontal
+             à l'est ou à l'ouest de quelque chose.
+             Voir le déclencheur source pour les diagrammes dans les commentaires.`,
       },
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
@@ -379,43 +393,53 @@ Options.Triggers.push({
         bubbleNetMech: {
           en: '${fettersBubble} + ${spreadStack}',
           de: '${fettersBubble} + ${spreadStack}',
+          fr: '${fettersBubble} + ${spreadStack}',
         },
         bubbleNetMechPartner: {
           en: '${fettersBubble} + ${spreadStack} (w/${player})',
           de: '${fettersBubble} + ${spreadStack} (mit ${player})',
+          fr: '${fettersBubble} + ${spreadStack} (avec ${player})',
         },
         bubbleBuff: {
           en: 'Bubble',
           de: 'Blase',
+          fr: 'Bulle',
         },
         fettersBuff: {
           en: 'Fetters',
           de: 'Ketten',
+          fr: 'Entraves',
         },
         spread: Outputs.spread,
         stacks: {
           en: 'Stacks',
           de: 'Sammeln',
+          fr: 'Package',
         },
         bubbleAnything: {
           en: 'Diagonal of Vertical / Next to Horizontal ',
           de: 'Diagonale der Vertikalen / Neben Horizontal',
+          fr: 'Diagonale de la verticale / À côté de l\'horizontale',
         },
         fettersSpreadSplit: {
           en: 'Diagonal of Vertical',
           de: 'Diagonale der Vertikalen',
+          fr: 'Diagonale de la verticale',
         },
         fettersSpreadColumn: {
           en: 'Next to Vertical',
           de: 'Neben Vertikal',
+          fr: 'À côté de la verticale',
         },
         fettersStackSplit: {
           en: 'On Horizontal',
           de: 'Auf Horizontal',
+          fr: 'Sur l\'horizontale',
         },
         fettersStackColumn: {
           en: 'Diagonal of Horizontal',
           de: 'Diagonale der Horizontalen',
+          fr: 'Diagonale de l\'horizontale',
         },
       },
     },
@@ -432,10 +456,12 @@ Options.Triggers.push({
         spread: {
           en: 'Spread => Stacks',
           de: 'Verteilen => Sammeln',
+          fr: 'Écarté => Package',
         },
         stacks: {
           en: 'Stacks => Spread',
           de: 'Sammeln => Verteilen',
+          fr: 'Package => Écarté',
         },
       },
     },
@@ -459,10 +485,12 @@ Options.Triggers.push({
         stacks: {
           en: 'Stacks',
           de: 'Sammeln',
+          fr: 'Package',
         },
         roleStacks: {
           en: 'Role Stacks',
           de: 'Rollengruppe sammeln',
+          fr: 'Package par rôle',
         },
       },
     },
@@ -502,14 +530,17 @@ Options.Triggers.push({
         roleStacks: {
           en: 'Role Stacks',
           de: 'Rollengruppe sammeln',
+          fr: 'Package par rôle',
         },
         spreadThenRoleStacks: {
           en: 'Spread => Role Stacks',
           de: 'Verteilen => Rollengruppe sammeln',
+          fr: 'Écarté => Package par rôle',
         },
         roleStacksThenSpread: {
           en: 'Role Stacks => Spread',
           de: 'Rollengruppe sammeln => Verteilen',
+          fr: 'Package par rôle => Écarté',
         },
       },
     },
@@ -527,10 +558,12 @@ Options.Triggers.push({
         outInStacks: {
           en: 'Out => In + Stacks',
           de: 'Raus => Rein + sammeln',
+          fr: 'Extérieur => Intérieur + Package',
         },
         outInRoleStacks: {
           en: 'Out => In + Role Stacks',
           de: 'Raus => Rein + Rollengruppe sammeln',
+          fr: 'Extérieur => Intérieur + Package par rôle',
         },
       },
     },
@@ -548,10 +581,12 @@ Options.Triggers.push({
         inOutStacks: {
           en: 'In => Out + Stacks',
           de: 'Rein => Raus + sammeln',
+          fr: 'Intérieur => Extérieur + Package',
         },
         inOutRoleStacks: {
           en: 'In => Out + Role Stacks',
           de: 'Rein => Raus + Rollengruppe sammeln',
+          fr: 'Intérieur => Extérieur + Package par rôle',
         },
       },
     },
@@ -576,16 +611,19 @@ Options.Triggers.push({
         text: {
           en: '${inOut} + ${stack}',
           de: '${inOut} + ${stack}',
+          fr: '${inOut} + ${stack}',
         },
         in: Outputs.in,
         out: Outputs.out,
         stack: {
           en: 'Stacks',
           de: 'Sammeln',
+          fr: 'Package',
         },
         roleStacks: {
           en: 'Role Stacks',
           de: 'Rollengruppe sammeln',
+          fr: 'Package par rôle',
         },
       },
     },
@@ -622,14 +660,17 @@ Options.Triggers.push({
         northSouthSafe: {
           en: 'North/South',
           de: 'Norden/Süden',
+          fr: 'Nord/Sud',
         },
         eastWestSafe: {
           en: 'East/West',
           de: 'Osten/Westen',
+          fr: 'Est/Ouest',
         },
         cornersSafe: {
           en: 'Corners',
           de: 'Ecken',
+          fr: 'Coins',
         },
       },
     },
@@ -648,14 +689,17 @@ Options.Triggers.push({
         knockbackSpread: {
           en: 'Knockback => Spread',
           de: 'Rückstoß => verteilen',
+          fr: 'Pousée => Écartez-vous',
         },
         knockbackStacks: {
           en: 'Knockback => Stacks',
           de: 'Rückstoß => sammeln',
+          fr: 'Poussée => Package',
         },
         knockbackRoleStacks: {
           en: 'Knockback => Role Stacks',
           de: 'Rückstoß => Rollengruppe sammeln',
+          fr: 'Poussée => Package par rôle',
         },
       },
     },
@@ -677,10 +721,12 @@ Options.Triggers.push({
           tornadoOn: {
             en: 'Away from ${player}',
             de: 'Weg von ${player}',
+            fr: 'Loin de ${player}',
           },
           tornadoOnYou: {
             en: 'Tornado on YOU',
             de: 'Tornado auf DIR',
+            fr: 'Tornade sur VOUS',
           },
         };
         if (data.me === matches.target)
@@ -700,6 +746,7 @@ Options.Triggers.push({
         text: {
           en: 'Cleanse ${player}',
           de: 'Reinige ${player}',
+          fr: 'Guérissez ${player}',
         },
       },
     },
@@ -724,6 +771,7 @@ Options.Triggers.push({
         text: {
           en: 'Get Behind + Out',
           de: 'Geh nach Hinten + Raus',
+          fr: 'Derrière + Extérieur',
         },
       },
     },
@@ -742,6 +790,7 @@ Options.Triggers.push({
         text: {
           en: 'Kill Islekeeper!',
           de: 'Wächter besiegen!',
+          fr: 'Tuez le gardien !',
         },
       },
     },
@@ -883,18 +932,22 @@ Options.Triggers.push({
         front: {
           en: 'Face Towards Lala',
           de: 'Lala anschauen',
+          fr: 'Regardez Lala',
         },
         back: {
           en: 'Look Away from Lala',
           de: 'Von Lala weg schauen',
+          fr: 'Ne regardez pas Lala',
         },
         left: {
           en: 'Left Flank towards Lala',
           de: 'Linke Seite zu Lala zeigen',
+          fr: 'Flanc gauche vers Lala',
         },
         right: {
           en: 'Right Flank towards Lala',
           de: 'Rechte Seite zu Lala zeigen',
+          fr: 'Flanc droit vers Lala',
         },
       },
     },
@@ -923,31 +976,38 @@ Options.Triggers.push({
           one: {
             en: 'One',
             de: 'Eins',
+            fr: 'Un',
           },
           bigTwo: {
             en: 'Two (stack with three)',
             de: 'Zwei (sammeln mit Drei)',
+            fr: 'Deux (Pack avec Trois)',
           },
           smallTwo: {
             en: 'Two (stack with one)',
             de: 'Zwei (sammeln mit Eins)',
+            fr: 'Deux (Pack avec Un',
           },
           eitherTwo: {
             en: 'Either Two (w/${player})',
             de: 'Eine Zwei (mit ${player})',
+            fr: 'Un des deux (avec ${player})',
           },
           three: {
             en: 'Three',
             de: 'Drei',
+            fr: 'Trois',
           },
           // This is just a raidcall so you can direct your friends.
           smallTwoOn: {
             en: '(Two with one: ${players})',
             de: '(Zwei mit Eins: ${players})',
+            fr: '(Deux avec Un : ${players})',
           },
           unknownNum: {
             en: '${num}',
             de: '${num}',
+            fr: '${num}',
           },
           num1: Outputs.num1,
           num2: Outputs.num2,
@@ -1036,10 +1096,12 @@ Options.Triggers.push({
         left: {
           en: 'Leftward March',
           de: 'Linker March',
+          fr: 'Marche à gauche',
         },
         right: {
           en: 'Rightward March',
           de: 'Rechter March',
+          fr: 'Marche à droite',
         },
       },
     },
@@ -1060,18 +1122,22 @@ Options.Triggers.push({
         num1: {
           en: 'One (avoid all)',
           de: 'Eins (alles ausweichen)',
+          fr: 'Un (Évitez tout)',
         },
         num2: {
           en: 'Two (stay middle)',
           de: 'Zwei (steh in der Mitte)',
+          fr: 'Deux (Restez au centre)',
         },
         num3: {
           en: 'Three (adjacent to middle)',
           de: 'Drei (steh neben der Mitte)',
+          fr: 'Trois (adjacent au centre)',
         },
         num4: {
           en: 'Four',
           de: 'Vier',
+          fr: 'Quatre',
         },
       },
     },
@@ -1119,6 +1185,7 @@ Options.Triggers.push({
         numSafeLater: {
           en: '(${num} safe later)',
           de: '(${num} später sicher)',
+          fr: '(${num} sûr ensuite)',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -1178,14 +1245,17 @@ Options.Triggers.push({
           dartOnYou: {
             en: 'Dart on YOU',
             de: 'Dart auf DIR',
+            fr: 'Dard sur VOUS',
           },
           noDartOnYou: {
             en: 'No Dart',
             de: 'Kein Dart',
+            fr: 'Pas de Dard',
           },
           flexCall: {
             en: '(${player} unmarked)',
             de: '(${player} unmarkiert)',
+            fr: '(${player} non-marqué)',
           },
         };
         if (data.staticeIsPinwheelingDartboard)
@@ -1227,6 +1297,7 @@ Options.Triggers.push({
         numSafeSoon: {
           en: '(${num} safe soon)',
           de: '(${num} gleich sicher)',
+          fr: '(${num} bientôt sûr',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -1254,6 +1325,7 @@ Options.Triggers.push({
         knockbackToNum: {
           en: 'Knockback => ${num}',
           de: 'Rückstoß => ${num}',
+          fr: 'Poussée => ${num}',
         },
         knockback: Outputs.knockback,
         num1: Outputs.num1,
@@ -1296,18 +1368,22 @@ Options.Triggers.push({
         forward: {
           en: 'Forward March => ${mech}',
           de: 'Vorwärtsmarsch => ${mech}',
+          fr: 'Marche en avant => ${mech}',
         },
         backward: {
           en: 'Backward March => ${mech}',
           de: 'Rückwärtsmarsch => ${mech}',
+          fr: 'Marche en arrière => ${mech}',
         },
         left: {
           en: 'Left March => ${mech}',
           de: 'Marsch Links => ${mech}',
+          fr: 'Marche à gauche => ${mech}',
         },
         right: {
           en: 'Right March => ${mech}',
           de: 'Marsch Rechts => ${mech}',
+          fr: 'Marche à droite => ${mech}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
@@ -1342,6 +1418,7 @@ Options.Triggers.push({
           missileOnYou: {
             en: 'Bait Tethers => Missile Spread',
             de: 'Verbindungen ködern => Verteilen mit Raketen',
+            fr: 'Attirez les liens => Écartez les missiles',
           },
         };
         if (data.staticeMissileTether.length !== 2)
@@ -1374,6 +1451,7 @@ Options.Triggers.push({
         stack: {
           en: 'Juke Claw => Stack',
           de: 'Zieh Klaue => Sammeln',
+          fr: 'Griffe => Package',
         },
       },
     },
@@ -1409,22 +1487,27 @@ Options.Triggers.push({
           dartOnYou: {
             en: 'Dart (w/${player})',
             de: 'Dart (mit ${player})',
+            fr: 'Dard (avec ${player})',
           },
           noDartOnYou: {
             en: 'No Dart',
             de: 'Kein Dart',
+            fr: 'Pas de dard',
           },
           blue: {
             en: 'Avoid Blue',
             de: 'Vermeide Blau',
+            fr: 'Évitez le bleu',
           },
           red: {
             en: 'Avoid Red',
             de: 'Vermeide Rot',
+            fr: 'Évitez le rouge',
           },
           yellow: {
             en: 'Avoid Yellow',
             de: 'Vermeide Gelb',
+            fr: 'Évitez le jaune',
           },
         };
         let infoText;
@@ -1488,10 +1571,12 @@ Options.Triggers.push({
         tether: {
           en: 'Tether w/${player}',
           de: 'Verbindung mit ${player}',
+          fr: 'Lien avec ${player}',
         },
         stack: {
           en: 'Stack w/${player}',
           de: 'Sammeln mit ${player}',
+          fr: 'Package avec ${player}',
         },
       },
     },
@@ -1602,7 +1687,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aloalo Golem': 'golem sylvestre d\'Aloalo',
         'Aloalo Islekeeper': 'gardien d\'Aloalo',
@@ -1629,6 +1713,8 @@ Options.Triggers.push({
         'The Midnight Trial': 'Épreuve de Nokosero',
       },
       'replaceText': {
+        '\\(buff\\)': '(Buff)',
+        '\\(cast\\)': '(Incantation)',
         'Aero II': 'Extra Vent',
         'Aero IV': 'Giga Vent',
         'Analysis': 'Analyse',
@@ -1695,7 +1781,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aloalo Golem': 'アロアロ・ウッドゴーレム',
         'Aloalo Islekeeper': 'アロアロ・キーパー',

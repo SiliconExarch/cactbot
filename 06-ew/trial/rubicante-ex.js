@@ -127,6 +127,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${dir} (max melee)',
+          de: '${dir} (max Nahkämpfer-Entfernung)',
+          fr: '${dir} (max melee)',
         },
         north: Outputs.north,
         south: Outputs.south,
@@ -185,6 +187,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${dir} (max melee)',
+          de: '${dir} (max Nahkämpfer-Entfernung)',
+          fr: '${dir} (max melee)',
         },
         dirNNE: Outputs.dirNNE,
         dirENE: Outputs.dirENE,
@@ -429,9 +433,13 @@ Options.Triggers.push({
         out: Outputs.out,
         outCardinal: {
           en: 'Out + Cardinal',
+          de: 'Raus + Kardinal',
+          fr: 'Extérieur + Cardinal',
         },
         outIntercard: {
           en: 'Out + Intercard',
+          de: 'Raus + Interkardinal',
+          fr: 'Extérieur + Intercardinal',
         },
       },
     },
@@ -716,6 +724,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${safe} => ${mech}',
+          de: '${safe} => ${mech}',
+          fr: '${safe} => ${mech}',
         },
         cardinals: {
           en: 'Cardinal',
@@ -751,9 +761,13 @@ Options.Triggers.push({
         },
         supportStack: {
           en: '(supports stack)',
+          de: '(Supporter sammeln)',
+          fr: '(package support)',
         },
         dpsStack: {
           en: '(dps stack)',
+          de: '(DPS sammeln)',
+          fr: '(Package DPS)',
         },
       },
     },
@@ -815,7 +829,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': 'cercle arcanique du Purgatoire',
         '(?<!Greater )Flamesent': 'flamme démoniaque',
