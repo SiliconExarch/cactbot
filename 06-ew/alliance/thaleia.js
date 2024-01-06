@@ -141,7 +141,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to rotated safe zone',
           de: 'Geh zum rotierten sicheren Feld',
-          fr: 'Allez dans une zone sûre',
+          fr: 'Allez dans une zone sûre après rotation',
           ja: '安置へ移動',
           ko: '회전한 뒤의 안전 지대로 가기',
         },
@@ -302,11 +302,13 @@ Options.Triggers.push({
         stackMarkerOn: {
           en: '6x Stack on ${player}',
           de: '6x Sammeln auf ${player}',
+          fr: 'Package x6 sur ${player}',
           ko: '6x 쉐어: ${player}',
         },
         stackMarkerOnYou: {
           en: '6x Stack on You',
           de: '6x Sammeln auf Dir',
+          fr: 'Package x6 sur Vous',
           ko: '6x 쉐어 대상자',
         },
       },
@@ -387,6 +389,7 @@ Options.Triggers.push({
         text: {
           en: '${front} / ${back}',
           de: '${front} / ${back}',
+          fr: '${front} / ${back}',
           ko: '${front} / ${back}',
         },
         dirNE: Outputs.dirNE,
@@ -404,6 +407,7 @@ Options.Triggers.push({
         text: {
           en: '${front} / ${back}',
           de: '${front} / ${back}',
+          fr: '${front} / ${back}',
           ko: '${front} / ${back}',
         },
         dirNW: Outputs.dirNW,
@@ -434,6 +438,7 @@ Options.Triggers.push({
         text: {
           en: 'South (away from orb)',
           de: 'Süden (weg vom Orb)',
+          fr: 'Sud (loin de l\'orbe)',
           ko: '남쪽 (구슬에서 멀리)',
         },
       },
@@ -447,6 +452,7 @@ Options.Triggers.push({
         text: {
           en: 'North (away from orb)',
           de: 'Norden (weg vom Orb)',
+          fr: 'Nord (loin de l\'orbe)',
           ko: '북쪽 (구슬에서 멀리)',
         },
       },
@@ -460,6 +466,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback to south safe spot',
           de: 'Rückstoß zum südlichen sicheren Zone',
+          fr: 'Poussée vers la zone sûre au Sud',
           ko: '남쪽 안전지대로 넉백되기',
         },
       },
@@ -473,6 +480,7 @@ Options.Triggers.push({
         text: {
           en: 'Knockback to north safe spot',
           de: 'Rückstoß zum nördliche sicheren Zone',
+          fr: 'Poussée vers la zone sûre au Nord',
           ko: '북쪽 안전지대로 넉백되기',
         },
       },
@@ -560,7 +568,7 @@ Options.Triggers.push({
         text: {
           en: 'Go to rotated safe zone',
           de: 'Geh in den sicheren Bereich',
-          fr: 'Allez dans une zone sûre',
+          fr: 'Allez dans une zone sûre après rotation',
           ja: '安置へ移動',
           ko: '회전한 뒤의 안전 지대로 가기',
         },
@@ -668,14 +676,14 @@ Options.Triggers.push({
         red: {
           en: 'Blue is safe',
           de: 'Blau ist sicher',
-          fr: 'Bleu est sûr',
+          fr: 'Le bleu est sûr',
           ja: '青安置',
           ko: '파랑이 안전',
         },
         blue: {
           en: 'Red is safe',
           de: 'Rot ist sicher',
-          fr: 'Rouge est sûr',
+          fr: 'Le rouge est sûr',
           ja: '赤安置',
           ko: '빨강이 안전',
         },
@@ -814,7 +822,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Eulogia': 'Eulogie',
         'Llymlaen(?!\')': 'Llymlaen',
@@ -916,7 +923,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Eulogia': 'エウロギア',
         'Llymlaen(?!\')': 'リムレーン',

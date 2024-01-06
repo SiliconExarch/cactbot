@@ -826,13 +826,14 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'comète',
         'Toxic Bubble': 'bulle empoisonnée',
         'Zeromus': 'Zeromus',
       },
       'replaceText': {
+        '--spread--': '--Écartement--',
+        '--towers--': '--Tours--',
         'Abyssal Echoes': 'Écho abyssal',
         'Abyssal Nox': 'Nox abyssal',
         'Akh Rhai': 'Akh Rhai',
