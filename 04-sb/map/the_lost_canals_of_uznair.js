@@ -4,7 +4,6 @@ const uznairOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
-    fr: '${name} apparaît !',
     cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },

@@ -106,7 +106,6 @@ Options.Triggers.push({
         text: {
           en: 'Away from tethered rock',
           de: 'Weg vom verbundenen Felsen',
-          fr: 'Éloignez-vous du rocher lié',
           ja: '線の繋がる石回避',
           cn: '躲避连线石头',
           ko: '선 연결된 돌 피하기',

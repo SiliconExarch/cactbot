@@ -413,6 +413,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Execrated Wile': 'テンパード・ワイル',
         'Zurvan': 'ズルワーン',

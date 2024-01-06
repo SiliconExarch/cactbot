@@ -178,6 +178,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'Hégémone',
         'Parasitos': 'créature parasite',
@@ -198,6 +199,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Hegemone': 'ヘーゲモネー',
         'Parasitos': '寄生生物',

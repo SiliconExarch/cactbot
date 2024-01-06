@@ -186,20 +186,17 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Arkas': 'Arkas',
         'Cyancap Cavern': 'Caverne de Cap-cyan',
         'Lyngbakr': 'Lyngbakr',
-        'Mammoth Tentacle': 'Bras d\'octomammouth',
-        'Octomammoth': 'Octomammouth',
+        'Mammoth Tentacle': 'bras d\'octomammouth',
+        'Octomammoth': 'octomammouth',
         'The Deep Below': 'Bassin éthéré',
         'The Landfast Floe': 'Cirque glacé',
       },
       'replaceText': {
-        '\\(big\\)': '(Gros)',
-        '\\(small\\)': '(Petit)',
-        '\\(explosion\\)': '(Explosion)',
-        '\\(tether\\)': '(Lien)',
         'Battle Cry': 'Cri de guerre',
         'Body Slam': 'Charge physique',
         'Breathstroke': 'Souffle et fauche',

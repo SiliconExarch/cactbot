@@ -165,6 +165,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Golbez': 'Golbez',
         'Golbez\'s Shadow': 'spectre de Golbez',

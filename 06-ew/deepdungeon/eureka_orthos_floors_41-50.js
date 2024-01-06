@@ -23,7 +23,6 @@ Options.Triggers.push({
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           de: 'Raus oder unterbreche ${name}',
-          fr: 'Extérieur ou interrompez ${name}',
           ja: '沈黙: ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
@@ -59,7 +58,6 @@ Options.Triggers.push({
         text: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
-          fr: 'Masquez le champ de vision vers ${name}',
           ja: '${name}の視線から隠れる',
           cn: '利用掩体卡 ${name} 的视线',
           ko: '${name}의 시야 밖으로 숨기',
@@ -101,7 +99,7 @@ Options.Triggers.push({
         text: {
           en: 'Run Away From Boss',
           de: 'Renn weg vom Boss',
-          fr: 'Éloignez-vous du boss',
+          fr: 'Courez loin du boss',
           ja: 'ボスから離れる',
           cn: '远离Boss',
           ko: '보스와 거리 벌리기',

@@ -171,6 +171,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat':
           'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
@@ -178,8 +179,8 @@ Options.Triggers.push({
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
-        '<blip> Limits of single combatant': '<biep> Leistungsgrenze als Einzelkämpfer',
-        '<blip> Warning\\. Calculations indicate': '<biep> Warnung. Erhöhte Wahrscheinlichkeit',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate':
+          '<biep> Warnung. Erhöhte Wahrscheinlichkeit',
       },
       'replaceText': {
         'Beyond Strength': 'Schildkombo G',
@@ -212,15 +213,16 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate':
+          'Alerte... Alerte... Forte augmentation',
         'Calculations indicate increased probability of defeat':
           'Forte augmentation des probabilités de défaite',
         'Omega(?!-)': 'Oméga',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
-        '<blip> Limits of single combatant': 'Bip... Bip... Limites du combat en solitaire',
-        '<blip> Warning\\. Calculations indicate': 'Alerte... Alerte... Forte augmentation',
       },
       'replaceText': {
         'Beyond Strength': 'Combo bouclier G',
@@ -253,13 +255,13 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Progress to party combat': '単独戦闘による限界を確認',
-        '<blip> Limits of single combatant': '分析……単独戦闘による',
-        '<blip> Warning\\. Calculations indicate': '警告……警告……敗北の危険性が上昇……',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '警告……警告……敗北の危険性が上昇……',
       },
       'replaceText': {
         'Beyond Strength': 'シールドコンボG',
@@ -292,14 +294,14 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
         'Omega-M': '欧米茄M',
         'Optical Unit': '视觉组',
         'Progress to party combat': '确认到单独战斗的极限',
-        '<blip> Limits of single combatant': '分析……确认到单',
-        '<blip> Warning\\. Calculations indicate': '警告……警告……失败的危险性上升……',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '警告……警告……失败的危险性上升……',
       },
       'replaceText': {
         'Beyond Strength': '盾连击G',
@@ -332,14 +334,14 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-M': '오메가 M',
         'Optical Unit': '광학 유닛',
         'Progress to party combat': '단독 전투 한계 확인',
         'Calculations indicate increased probability of defeat': '패배 위험성 상승',
-        '<blip> Limits of single combatant': '분석…… 단독 전투 한계',
-        '<blip> Warning\\. Calculations indicate': '패배 위험성 상승',
+        '\\\\<blip\\\\> Warning\\\\\. Calculations indicate': '패배 위험성 상승',
       },
       'replaceText': {
         'Beyond Strength': '방패 연격 G',

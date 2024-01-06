@@ -263,6 +263,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Illusory Themis': 'spectre de Thémis',
         '(?<! )Themis': 'Thémis',
@@ -290,6 +291,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Illusory Themis': 'テミスの幻影',
         '(?<! )Themis': 'テミス',
