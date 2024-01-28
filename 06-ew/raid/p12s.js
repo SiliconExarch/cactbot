@@ -671,7 +671,7 @@ Options.Triggers.push({
         superchain2aLeftNorthSouth: {
           en: 'North + Her Left (then go South)',
           de: 'Norden + Links von Ihr (dannach Süden)',
-          fr: 'Norf + Sa gauche (puis aller au Sud)',
+          fr: 'Nord + Sa gauche (puis aller au Sud)',
           ja: '北 + 南へ前進 (左安置)',
           cn: '上 (北) + Boss左侧 (稍后 去下南)',
           ko: '북쪽 + 보스 왼쪽 (그리고 남쪽으로)',
