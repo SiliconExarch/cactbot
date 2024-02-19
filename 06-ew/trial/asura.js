@@ -51,6 +51,7 @@ Options.Triggers.push({
         'avoidClones': {
           en: 'Avoid clones',
           de: 'Vermeide Klone',
+          fr: 'Évitez les clones',
           cn: '躲避分身',
         },
       },
@@ -71,11 +72,13 @@ Options.Triggers.push({
         noJump: {
           en: 'Out => Away from Image',
           de: 'Raus => Weg von der Inkarnation',
+          fr: 'Extérieur => Loin de l\'incarnation',
           cn: '远离 => 远离场边分身',
         },
         withJump: {
           en: 'Out => Away from Image After Jump',
           de: 'Raus => Weg von der Inkarnation nach dem Sprung',
+          fr: 'Extérieur => Loin de l\'incarnation après le saut',
           cn: '远离 => 远离场边跳跃后的分身',
         },
       },
@@ -94,11 +97,13 @@ Options.Triggers.push({
         noJump: {
           en: 'In => Under Image',
           de: 'Rein => Unter die Inkarnation',
+          fr: 'Intérieur => Sous l\'incarnation',
           cn: '靠近 => 靠近场边分身',
         },
         withJump: {
           en: 'In => Under Image After Jump',
           de: 'Rein => Unter die Inkarnation nach dem Sprung',
+          fr: 'Intérieur => Sous l\'incarnation après le saut',
           cn: '靠近 => 靠近场边跳跃后的分身',
         },
       },
@@ -117,11 +122,13 @@ Options.Triggers.push({
         noJump: {
           en: 'Avoid Cleave => Sides of Image',
           de: 'Cleave ausweichen => Seitlich der Inkarnation',
+          fr: 'Évitez le cleave => Côtés de l\'incarnation',
           cn: '躲避直线AoE => 去场边分身两侧',
         },
         withJump: {
           en: 'Avoid Cleave => Sides of Image After Jump',
           de: 'Cleave ausweichen => Seitlich der Inkarnation nach dem Sprung',
+          fr: 'Évitez le cleave => Côtés de l\'incarnation après le saut',
           cn: '躲避直线AoE => 去场边跳跃后的分身两侧',
         },
       },
@@ -169,26 +176,31 @@ Options.Triggers.push({
         text: {
           en: 'Go ${dirs} ${spot}',
           de: 'Geh ${dirs} ${spot}',
+          fr: 'Allez ${dirs} ${spot}',
           cn: '去 ${dirs} ${spot}',
         },
         doubledirs: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         in: {
           en: '(under image)',
           de: '(Unter die Inkarnation)',
+          fr: '(Sous l\'incarnation)',
           cn: '(靠近分身)',
         },
         out: {
           en: '(away from image)',
           de: '(Weg von der Inkarnation)',
+          fr: '(Loin de l\'incarnation',
           cn: '(远离分身)',
         },
         sides: {
           en: '(sides of image)',
           de: '(Setlich der Inkarnation)',
+          fr: '(Côtés de l\'incarnation',
           cn: '(分身两侧)',
         },
         ...Directions.outputStringsCardinalDir,
@@ -234,26 +246,31 @@ Options.Triggers.push({
         text: {
           en: 'Go ${dirs} ${spot}',
           de: 'Geh ${dirs} ${spot}',
+          fr: 'Allez ${dirs} ${spot}',
           cn: '去 ${dirs} ${spot}',
         },
         doubledirs: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         in: {
           en: '(under image)',
           de: '(Unter die Inkarnation)',
+          fr: '(Sous l\'incarnation)',
           cn: '(靠近分身)',
         },
         out: {
           en: '(away from image)',
           de: '(Weg von der Inkarnation)',
+          fr: '(Loin de l\'incarnation)',
           cn: '(远离分身)',
         },
         sides: {
           en: '(sides of image)',
           de: '(Setlich der Inkarnation)',
+          fr: '(Côtés de l\'incarnation)',
           cn: '(分身两侧)',
         },
         ...Directions.outputStringsCardinalDir,
@@ -270,6 +287,7 @@ Options.Triggers.push({
         'wrath': {
           en: 'Stand in blue half',
           de: 'Steh in der blauen Hälfte',
+          fr: 'Restez dans la moitié bleue',
           cn: '站蓝色半场',
         },
       },
@@ -285,6 +303,7 @@ Options.Triggers.push({
         'delight': {
           en: 'Stand in red half',
           de: 'Steh in der roten Hälfte',
+          fr: 'Restez dans la moitié rouge',
           cn: '站红色半场',
         },
       },
@@ -358,6 +377,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} (x2) => ${dir2} (x2) => ${dir3} => ${dir4}',
           de: '${dir1} (x2) => ${dir2} (x2) => ${dir3} => ${dir4}',
+          fr: '${dir1} (x2) => ${dir2} (x2) => ${dir3} => ${dir4}',
           cn: '${dir1} (x2) => ${dir2} (x2) => ${dir3} => ${dir4}',
         },
         dirSE: Outputs.dirSE,
@@ -412,13 +432,16 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Asura(?! )': 'Asura',
         'Asura Image': 'incarnation d\'Asura',
         'Phantom Asura': 'illusion d\'Asura',
       },
       'replaceText': {
+        '\\(execute\\)': '(Execute)',
+        '\\(preview\\)': '(Aperçu)',
+        '\\(release\\)': '(Libération)',
+        '\\(store\\)': '(Sauvegarde)',
         'Asuri Chakra': 'Cercle rituel',
         'Bladescatter': 'Illumination chaotique',
         '(?<! )Bladewise': 'Entaille rayonnante',
