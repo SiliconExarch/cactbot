@@ -3236,7 +3236,7 @@ Options.Triggers.push({
         baitBetaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Beta)',
           de: 'Vermeide Formen => Himmelsrichtungen ködern (Beta)',
-          fr: 'Évitez les formes => Positions (B2ta)',
+          fr: 'Évitez les formes => Positions (Beta)',
           cn: '远离方块 => 引导射线 (β)',
           ko: '도형 피하기 => 장판 유도 (베타)',
         },
