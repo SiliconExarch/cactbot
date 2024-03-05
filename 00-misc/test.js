@@ -348,6 +348,41 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'Test Countdown',
+      type: 'Countdown',
+      netRegex: { result: '00' },
+      infoText: (_data, matches, output) =>
+        output.countdown({ player: matches.name, seconds: matches.countdownTime }),
+      outputStrings: {
+        countdown: {
+          en: '${player} started ${seconds}s countdown',
+        },
+      },
+    },
+    {
+      id: 'Test Countdown Failed',
+      type: 'Countdown',
+      netRegex: { result: '(?!00).{2}' },
+      infoText: (_data, matches, output) =>
+        output.countdownFail({ player: matches.name, code: matches.result }),
+      outputStrings: {
+        countdownFail: {
+          en: '${player} failed to start countdown (result code: ${code})',
+        },
+      },
+    },
+    {
+      id: 'Test Countdown Cancel',
+      type: 'CountdownCancel',
+      netRegex: {},
+      infoText: (_data, matches, output) => output.countdownCancel({ player: matches.name }),
+      outputStrings: {
+        countdownCancel: {
+          en: '${player} cancelled countdown',
+        },
+      },
+    },
+    {
       id: 'Test OutputStrings',
       type: 'GameLog',
       netRegex: {
