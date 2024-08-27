@@ -32,14 +32,65 @@ const tagTeamOutputStrings = {
   ...Directions.outputStrings8Dir,
   safeDirs: {
     en: 'Safe: ${dirs} => ${last}',
+    de: 'Sicher: ${dirs} => ${last}',
+    ja: '安地: ${dirs} => ${last}',
+    cn: '安全区: ${dirs} => ${last}',
   },
   separator: {
     en: '/',
+    de: '/',
+    ja: '/',
+    cn: '/',
   },
 };
 Options.Triggers.push({
   id: 'AacLightHeavyweightM3Savage',
   zoneId: ZoneId.AacLightHeavyweightM3Savage,
+  config: [
+    {
+      id: 'barbarousBarrageKnockback',
+      name: {
+        en: 'Barbarous Barrage Uptime Knockback',
+        de: 'Brutalo-Bomben Uptime Rückstoß',
+        ja: 'ボンバリアンボムのアムレン/堅実 限界タイミング通知',
+        cn: '击退塔uptime打法击退提示时机调整功能',
+      },
+      comment: {
+        en: 'Select towers to dodge with knockback immunity.',
+        de: 'Wähle welche Türme mit Rückstoß-Immunität genommen werden.',
+        ja: '吹き飛ばし無効で避ける塔を選択してください',
+        cn: '选择防击退覆盖的塔。',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'None (No Callout)': 'none',
+          'First Tower': 'first',
+          'First Two Towers (Recommended)': 'two',
+          'All three towers': 'all',
+        },
+        de: {
+          'Keine (keine Ansage)': 'none',
+          'Erster Turm': 'first',
+          'Ersten zwei Türme (empfohlen)': 'two',
+          'Alle drei Türme': 'all',
+        },
+        ja: {
+          'なし (コールなし)': 'none',
+          '最初の塔': 'first',
+          '最初の2つ (推奨)': 'two',
+          '全ての塔': 'all',
+        },
+        cn: {
+          '关闭功能': 'none',
+          '第一个塔': 'first',
+          '前两个塔 (推荐)': 'two',
+          '全部塔': 'all',
+        },
+      },
+      default: 'none',
+    },
+  ],
   timelineFile: 'r3s.txt',
   initData: () => ({
     phaseTracker: 0,
@@ -122,6 +173,30 @@ Options.Triggers.push({
           cn: '击退 + 分散',
           ko: '넉백 + 산개',
         },
+      },
+    },
+    {
+      id: 'R3S Barbarous Barrage Uptime Knockback',
+      type: 'StartsUsing',
+      netRegex: { id: '93FB', source: 'Brute Bomber', capture: false },
+      delaySeconds: (data) => {
+        switch (data.triggerSetConfig.barbarousBarrageKnockback) {
+          case 'first':
+            return 9;
+          case 'two':
+            return 12;
+          case 'all':
+            return 15;
+          case 'none':
+            return 0;
+        }
+      },
+      infoText: (data, _matches, output) => {
+        if (data.triggerSetConfig.barbarousBarrageKnockback !== 'none')
+          return output.knockback();
+      },
+      outputStrings: {
+        knockback: Outputs.knockback,
       },
     },
     {
@@ -268,6 +343,17 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'R3S Octoboom Bombarian Special Reminder',
+      type: 'StartsUsing',
+      netRegex: { id: '9752', source: 'Brute Bomber', capture: false },
+      delaySeconds: 20,
+      durationSeconds: 7,
+      alertText: (_data, _matches, output) => output.spread(),
+      outputStrings: {
+        spread: Outputs.spread,
+      },
+    },
+    {
       id: 'R3S Quadroboom Bombarian Special',
       type: 'StartsUsing',
       netRegex: { id: '940A', source: 'Brute Bomber', capture: false },
@@ -280,6 +366,17 @@ Options.Triggers.push({
           cn: '钢铁 => 月环 => 击退 => 双人分摊',
           ko: '밖으로 => 안으로 => 넉백 => 쉐어',
         },
+      },
+    },
+    {
+      id: 'R3S Quadroboom Bombarian Special Reminder',
+      type: 'StartsUsing',
+      netRegex: { id: '940A', source: 'Brute Bomber', capture: false },
+      delaySeconds: 20,
+      durationSeconds: 7,
+      alertText: (_data, _matches, output) => output.stack(),
+      outputStrings: {
+        stack: Outputs.stackPartner,
       },
     },
     {
@@ -308,6 +405,9 @@ Options.Triggers.push({
         ...Directions.outputStringsCardinalDir,
         tetheredTo: {
           en: 'Tethered to ${dir} clone',
+          de: 'Vrebindung zum ${dir} Klon',
+          ja: '${dir} の分身に繋がれた',
+          cn: '连线分身: ${dir}',
         },
       },
     },
@@ -477,9 +577,15 @@ Options.Triggers.push({
         ...Directions.outputStrings8Dir,
         comboGo: {
           en: 'Knockback ${firstDir1}/${firstDir2} => Go ${secondDir}',
+          de: 'Rückstoß ${firstDir1}/${firstDir2} => Geh nach ${secondDir}',
+          ja: 'ノックバック ${firstDir1}/${firstDir2} => ${secondDir} へ移動',
+          cn: '击退 ${firstDir1}/${firstDir2} => 穿 ${secondDir}',
         },
         comboStay: {
           en: 'Knockback ${firstDir1}/${firstDir2}, Stay ${secondDir}',
+          de: 'Rückstoß ${firstDir1}/${firstDir2} => Bleibe im ${secondDir}',
+          ja: 'ノックバック ${firstDir1}/${firstDir2} => ${secondDir} で待機',
+          cn: '击退 ${firstDir1}/${firstDir2}, 停 ${secondDir}',
         },
       },
     },

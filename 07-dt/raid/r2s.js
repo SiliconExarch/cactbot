@@ -10,6 +10,22 @@ const headMarkerData = {
   // Vfx Path: m0906_share4_7s0k2
   heartStackMarker: '0205',
 };
+const poisonOutputStrings = {
+  defamationOnYou: Outputs.defamationOnYou,
+  defamations: {
+    en: 'Defamations',
+    de: 'Große AoE auf dir',
+    ja: '自分に巨大な爆発',
+    cn: '大圈点名',
+  },
+  in: {
+    en: 'In (Avoid Defamations)',
+    de: 'Mitte (weiche den AoEs aus)',
+    ja: '中央へ (巨大な爆発を避けて)',
+    cn: '去脚下 (远离大圈)',
+  },
+};
+const beelovedDebuffDurationOrder = [12, 28, 44, 62];
 Options.Triggers.push({
   id: 'AacLightHeavyweightM2Savage',
   zoneId: ZoneId.AacLightHeavyweightM2Savage,
@@ -17,6 +33,11 @@ Options.Triggers.push({
   initData: () => ({
     partnersSpreadCounter: 0,
     beatTwoSpreadCollect: [],
+    tankLaserCollect: [],
+    beelovedDebuffs: {
+      alpha: Array(4).map(() => ''),
+      beta: Array(4).map(() => ''),
+    },
   }),
   triggers: [
     {
@@ -90,10 +111,27 @@ Options.Triggers.push({
       response: Responses.sharedTankBuster(),
     },
     {
-      id: 'R2S Headmarker Cone Tankbuster',
+      id: 'R2S Headmarker Cone Tankbuster Collect',
       type: 'HeadMarker',
       netRegex: { id: headMarkerData.tankLaser, capture: true },
-      response: Responses.tankCleave(),
+      run: (data, matches) => data.tankLaserCollect.push(matches.target),
+    },
+    {
+      id: 'R2S Headmarker Cone Tankbuster',
+      type: 'HeadMarker',
+      netRegex: { id: headMarkerData.tankLaser, capture: false },
+      delaySeconds: 0.1,
+      suppressSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.tankLaserCollect.includes(data.me))
+          return output.cleaveOnYou();
+        return output.avoidCleave();
+      },
+      run: (data) => data.tankLaserCollect = [],
+      outputStrings: {
+        cleaveOnYou: Outputs.tankCleaveOnYou,
+        avoidCleave: Outputs.avoidTankCleave,
+      },
     },
     {
       id: 'R2S Headmarker Spread Collect',
@@ -106,6 +144,7 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: headMarkerData.spreadMarker2, capture: false },
       delaySeconds: 0.1,
+      suppressSeconds: 1,
       alertText: (data, _matches, output) => {
         if (data.beatTwoSpreadCollect.includes(data.me))
           return output.avoidTowers();
@@ -119,6 +158,9 @@ Options.Triggers.push({
       outputStrings: {
         avoidTowers: {
           en: 'Spread -- Avoid Towers',
+          de: 'Verteilen -- Vermeide Türme',
+          ja: '散開 -- 塔は避けて',
+          cn: '分散 - 躲开塔',
         },
         towers: Outputs.getTowers,
       },
@@ -133,6 +175,7 @@ Options.Triggers.push({
         text: {
           en: 'Drop Puddle Outside',
           de: 'Lege Fläche außen ab',
+          ja: '外側に捨てて',
           cn: '在场边放毒圈',
           ko: '바깥쪽에 장판 놓기',
         },
@@ -164,11 +207,11 @@ Options.Triggers.push({
       id: 'R2S Drop of Venom',
       type: 'StartsUsing',
       netRegex: { id: '9185', source: 'Honey B. Lovely', capture: false },
-      alarmText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.storedPartnersSpread = 'partners',
       outputStrings: {
         text: {
-          en: 'Stored Partners',
+          en: 'Stored: Partners',
           de: 'Gespeichert: Partner',
           ja: 'あとでペア',
           cn: '存储分摊',
@@ -180,11 +223,11 @@ Options.Triggers.push({
       id: 'R2S Splash of Venom',
       type: 'StartsUsing',
       netRegex: { id: '9184', source: 'Honey B. Lovely', capture: false },
-      alarmText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.storedPartnersSpread = 'spread',
       outputStrings: {
         text: {
-          en: 'Stored Spread',
+          en: 'Stored: Spread',
           de: 'Gespeichert: Verteilen',
           ja: 'あとで散開',
           cn: '存储分散',
@@ -196,11 +239,11 @@ Options.Triggers.push({
       id: 'R2S Drop of Love',
       type: 'StartsUsing',
       netRegex: { id: '9B09', source: 'Honey B. Lovely', capture: false },
-      alarmText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.storedPartnersSpread = 'partners',
       outputStrings: {
         text: {
-          en: 'Stored Partners',
+          en: 'Stored: Partners',
           de: 'Gespeichert: Partner',
           ja: 'あとでペア',
           cn: '存储分摊',
@@ -212,11 +255,11 @@ Options.Triggers.push({
       id: 'R2S Spread Love',
       type: 'StartsUsing',
       netRegex: { id: '9B08', source: 'Honey B. Lovely', capture: false },
-      alarmText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       run: (data) => data.storedPartnersSpread = 'spread',
       outputStrings: {
         text: {
-          en: 'Stored Spread',
+          en: 'Stored: Spread',
           de: 'Gespeichert: Verteilen',
           ja: 'あとで散開',
           cn: '存储分散',
@@ -225,28 +268,54 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'R2S Delayed Partners/Spread Callout',
+      id: 'R2S Honey Beeline Initial',
       type: 'StartsUsing',
-      netRegex: { id: ['9184', '9185', '9B08', '9B09'], source: 'Honey B. Lovely', capture: false },
-      delaySeconds: (data) => {
-        // TODO: Review these delay timings
-        switch (data.partnersSpreadCounter) {
-          case 1:
-            return 14;
-          case 2:
-            return 11;
-          case 3:
-            return 37;
-          case 4:
-            return 62;
-          case 5:
-            return 55;
-        }
-        return 0;
+      netRegex: { id: ['9186', '9B0C'], source: 'Honey B. Lovely', capture: false },
+      response: Responses.goSides(), // default is alertText, no need to specify
+    },
+    {
+      id: 'R2S Honey Beeline After Reminder',
+      type: 'StartsUsing',
+      netRegex: { id: ['9186', '9B0C'], source: 'Honey B. Lovely', capture: false },
+      delaySeconds: 1.5,
+      infoText: (data, _matches, output) => {
+        const mech = data.storedPartnersSpread;
+        return mech === undefined ? output.middle() : output[mech]();
       },
-      durationSeconds: 7,
-      infoText: (data, _matches, output) => output[data.storedPartnersSpread ?? 'unknown'](),
       outputStrings: {
+        middle: {
+          en: '(middle after)',
+          de: '(danach mitte)',
+          ja: '(後で内側へ)',
+          cn: '(稍后场中)',
+        },
+        partners: {
+          en: '(middle + partners after)',
+          de: '(mitte + danach mit partner sammeln)',
+          ja: '(後で内側へ + ペア)',
+          cn: '(稍后场中 + 分摊)',
+        },
+        spread: {
+          en: '(middle + spread after)',
+          de: '(mitte + danach verteilen)',
+          ja: '(後で内側へ + 散開)',
+          cn: '(稍后场中 + 分散)',
+        },
+      },
+    },
+    {
+      id: 'R2S Honey Beeline Followup',
+      type: 'Ability',
+      netRegex: { id: ['9186', '9B0C'], source: 'Honey B. Lovely', capture: false },
+      alertText: (data, _matches, output) => {
+        const mech = data.storedPartnersSpread;
+        const outStr = mech === undefined
+          ? output.middle()
+          : output.combo({ next: output.middle(), mech: output[mech]() });
+        return outStr;
+      },
+      outputStrings: {
+        middle: Outputs.middle,
         spread: {
           en: 'Spread',
           de: 'Verteilen',
@@ -261,20 +330,84 @@ Options.Triggers.push({
           cn: '分摊',
           ko: '쉐어',
         },
-        unknown: Outputs.unknown,
+        combo: {
+          en: '${next} + ${mech}',
+          de: '${next} + ${mech}',
+          ja: '${next} + ${mech}',
+          cn: '${next} + ${mech}',
+        },
       },
     },
     {
-      id: 'R2S Honey Beeline',
-      type: 'StartsUsing',
-      netRegex: { id: ['9186', '9B0C'], source: 'Honey B. Lovely', capture: false },
-      response: Responses.goSides(),
-    },
-    {
-      id: 'R2S Tempting Twist',
+      id: 'R2S Tempting Twist Initial',
       type: 'StartsUsing',
       netRegex: { id: ['9187', '9B0D'], source: 'Honey B. Lovely', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
+    },
+    {
+      id: 'R2S Tempting Twist After Reminder',
+      type: 'StartsUsing',
+      netRegex: { id: ['9187', '9B0D'], source: 'Honey B. Lovely', capture: false },
+      delaySeconds: 1.5,
+      infoText: (data, _matches, output) => {
+        const mech = data.storedPartnersSpread;
+        return mech === undefined ? output.out() : output[mech]();
+      },
+      outputStrings: {
+        out: {
+          en: '(out after)',
+          de: '(danach raus)',
+          ja: '(後で外側へ)',
+          cn: '(稍后远离)',
+        },
+        partners: {
+          en: '(out + partners after)',
+          de: '(raus + danach mit partner sammeln)',
+          ja: '(後で外側へ + ペア)',
+          cn: '(稍后远离 + 分摊)',
+        },
+        spread: {
+          en: '(out + spread after)',
+          de: '(raus + danach verteilen)',
+          ja: '(後で外側へ + 散開)',
+          cn: '(稍后远离 + 分散)',
+        },
+      },
+    },
+    {
+      id: 'R2S Tempting Twist Followup',
+      type: 'Ability',
+      netRegex: { id: ['9187', '9B0D'], source: 'Honey B. Lovely', capture: false },
+      alertText: (data, _matches, output) => {
+        const mech = data.storedPartnersSpread;
+        const outStr = mech === undefined
+          ? output.out()
+          : output.combo({ next: output.out(), mech: output[mech]() });
+        return outStr;
+      },
+      outputStrings: {
+        out: Outputs.out,
+        spread: {
+          en: 'Spread',
+          de: 'Verteilen',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
+        partners: {
+          en: 'Partners',
+          de: 'Partner',
+          ja: 'ペア',
+          cn: '分摊',
+          ko: '쉐어',
+        },
+        combo: {
+          en: '${next} + ${mech}',
+          de: '${next} + ${mech}',
+          ja: '${next} + ${mech}',
+          cn: '${next} + ${mech}',
+        },
+      },
     },
     {
       id: 'R2S Honey B. Live: 1st Beat',
@@ -333,6 +466,60 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'R2S Poison Debuff Tracker',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'F5E' },
+      condition: Conditions.targetIsYou(),
+      // short debuffs are 26s, longs are 46s
+      run: (data, matches) =>
+        data.poisonDebuff = parseFloat(matches.duration) > 30 ? 'long' : 'short',
+    },
+    {
+      id: 'R2S Poison First Defamations',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'F5E', capture: false },
+      delaySeconds: 20,
+      durationSeconds: 6,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.poisonDebuff === undefined)
+          return output.defamations();
+        return data.poisonDebuff === 'short' ? output.defamationOnYou() : output.in();
+      },
+      outputStrings: poisonOutputStrings,
+    },
+    {
+      id: 'R2S Poison Second Defamations',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'F5E', capture: false },
+      delaySeconds: 40,
+      durationSeconds: 6,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        if (data.poisonDebuff === undefined)
+          return output.defamations();
+        return data.poisonDebuff === 'short' ? output.in() : output.defamationOnYou();
+      },
+      outputStrings: poisonOutputStrings,
+    },
+    {
+      id: 'R2S Poison Towers',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'F5E' },
+      // use condition instead of suppress to prevent race condition with Poison Debuff Tracker
+      condition: Conditions.targetIsYou(),
+      // delay until the opposite (short/long) debuff resolves
+      delaySeconds: (data) => data.poisonDebuff === 'long' ? 26 : 46,
+      alertText: (data, _matches, output) => {
+        // if no poison debuff, there really can't be an accurate call anyway
+        if (data.poisonDebuff !== undefined)
+          return output.towers();
+      },
+      outputStrings: {
+        towers: Outputs.getTowers,
+      },
+    },
+    {
       id: 'R2S Honey B. Finale',
       type: 'StartsUsing',
       netRegex: { id: '918F', source: 'Honey B. Lovely', capture: false },
@@ -343,6 +530,82 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '91AA', source: 'Honey B. Lovely', capture: false },
       response: Responses.bigAoe(),
+    },
+    {
+      id: 'R2S Beeloved Venom Tracker',
+      type: 'GainsEffect',
+      // F5C: Alpha, F5D: Beta
+      // durations are 12s, 28s, 44s, and 62s
+      netRegex: { effectId: ['F5C', 'F5D'] },
+      run: (data, matches) => {
+        const type = matches.effectId === 'F5C' ? 'alpha' : 'beta';
+        if (data.me === matches.target)
+          data.beelovedType = type;
+        const duration = parseFloat(matches.duration);
+        const orderIdx = beelovedDebuffDurationOrder.indexOf(duration);
+        if (orderIdx === -1) // should not happen
+          return;
+        data.beelovedDebuffs[type][orderIdx] = matches.target;
+      },
+    },
+    {
+      id: 'R2S Beeloved Venom Player Merge',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['F5C', 'F5D'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 10,
+      alertText: (data, _matches, output) => {
+        let partner = output.unknown();
+        const myType = data.beelovedType;
+        if (myType === undefined)
+          return output.merge({ player: partner });
+        const orderIdx = data.beelovedDebuffs[myType].indexOf(data.me);
+        if (orderIdx === -1)
+          return output.merge({ player: partner });
+        const partnerType = myType === 'alpha' ? 'beta' : 'alpha';
+        partner = data.party.member(data.beelovedDebuffs[partnerType][orderIdx]).nick ??
+          output.unknown();
+        return output.merge({ player: partner });
+      },
+      outputStrings: {
+        merge: {
+          en: 'Merge Soon w/ ${player}',
+          de: 'Bald berühren mit ${player}',
+          ja: '${player} と重なって',
+          cn: '准备和 ${player} 撞毒',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'R2S Beeloved Venom Other Merge',
+      type: 'GainsEffect',
+      // only fire on the Alpha debuffs so the trigger fires once per merge
+      netRegex: { effectId: 'F5C' },
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 10,
+      infoText: (data, matches, output) => {
+        const duration = parseFloat(matches.duration);
+        const orderIdx = beelovedDebuffDurationOrder.indexOf(duration);
+        if (orderIdx === -1) // should not happen
+          return;
+        const alpha = data.beelovedDebuffs.alpha[orderIdx] ?? output.unknown();
+        const beta = data.beelovedDebuffs.beta[orderIdx] ?? output.unknown();
+        // no alert if we're one of the players; that's handled by Player Merge
+        if (alpha === data.me || beta === data.me)
+          return;
+        const alphaShort = data.party.member(alpha).nick ?? output.unknown();
+        const betaShort = data.party.member(beta).nick ?? output.unknown();
+        return output.merge({ alpha: alphaShort, beta: betaShort });
+      },
+      outputStrings: {
+        merge: {
+          en: 'Merge: ${alpha} + ${beta}',
+          de: 'Berühren: ${alpha} + ${beta}',
+          ja: '組み合わせ: ${alpha} + ${beta}',
+          cn: '撞毒: ${alpha} + ${beta}',
+        },
+        unknown: Outputs.unknown,
+      },
     },
   ],
   timelineReplace: [
