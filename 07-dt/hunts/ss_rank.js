@@ -65,6 +65,9 @@ Options.Triggers.push({
         frozen: {
           en: 'Frozen soon',
           de: 'Bald einfrieren',
+          fr: 'Gelé bientôt',
+          cn: '即将冻结',
+          ko: '곧 동결',
         },
       },
     },
@@ -90,6 +93,9 @@ Options.Triggers.push({
         iceLeft: {
           en: 'Right => Get Under',
           de: 'Rechts => Geh unter den Gegner',
+          fr: 'Droite => Allez dessous',
+          cn: '右 => 身下',
+          ko: '오른쪽 => 보스 아래로',
         },
       },
     },
@@ -103,6 +109,9 @@ Options.Triggers.push({
         iceRight: {
           en: 'Left => Get Under',
           de: 'Links => Geh unter den Gegner',
+          fr: 'Gauche => Allez dessous',
+          cn: '左 => 身下',
+          ko: '왼쪽 => 보스 아래로',
         },
       },
     },
@@ -116,6 +125,9 @@ Options.Triggers.push({
         fireRight: {
           en: 'Left => Out',
           de: 'Links => Raus',
+          fr: 'Droite => Extérieur',
+          cn: '左 => 远离',
+          ko: '왼쪽 => 밖으로',
         },
       },
     },
@@ -129,6 +141,9 @@ Options.Triggers.push({
         fireLeft: {
           en: 'Right => Out',
           de: 'Rechts => Raus',
+          fr: 'Gauche => Extérieur',
+          cn: '右 => 远离',
+          ko: '오른쪽 => 밖으로',
         },
       },
     },
@@ -143,13 +158,19 @@ Options.Triggers.push({
     {
       'locale': 'fr',
       'replaceSync': {
-        'Arch Aethereater': 'seigneur des cristallisateurs',
+        'Arch Aethereater': 'Seigneur des cristallisateurs',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Arch Aethereater': 'ロード・オブ・クリスタライザー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Arch Aethereater': '水晶化身之王',
       },
     },
   ],
