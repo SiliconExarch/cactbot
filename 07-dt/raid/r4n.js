@@ -13,6 +13,8 @@ const directionOutputStrings = {
   goRight: Outputs.right,
   stay: {
     en: 'Stay',
+    fr: 'Restez',
+    cn: '停',
   },
   num2: Outputs.num2,
   separator: {
@@ -25,6 +27,8 @@ const directionOutputStrings = {
   },
   intercardStay: {
     en: '${dir} => Stay',
+    fr: '${dir} => Restez',
+    cn: '${dir} => 停',
   },
   numHits: {
     en: '${dir} x${num}',
@@ -631,8 +635,8 @@ Options.Triggers.push({
         'Wicked Thunder': '狡雷',
       },
       'replaceText': {
-        'Left Roll': '左列',
-        'Right Roll': '右列',
+        'Left Roll': '左转',
+        'Right Roll': '右转',
         'west--': '西--',
         '--east': '--东',
         '\\(cast\\)': '(咏唱)',
