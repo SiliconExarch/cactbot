@@ -54,36 +54,42 @@ const ttokrroneTempestSandspoutOutputStrings = {
   front: Outputs.front,
   rear: {
     en: 'rear',
+    de: 'hinten',
     fr: 'arrière',
     cn: '后',
     ko: '후방',
   },
   rightFlank: {
     en: 'right flank',
+    de: 'rechte Flanke',
     fr: 'flanc gauche',
     cn: '右侧',
     ko: '오른쪽 측면',
   },
   leftFlank: {
     en: 'left flank',
+    de: 'linke Flanke',
     fr: 'flanc droit',
     cn: '左侧',
     ko: '왼쪽 측면',
   },
   triple: {
     en: '${inOut} + ${dir2} + ${dir3}',
+    de: '${inOut} + ${dir2} + ${dir3}',
     fr: '${inOut} + ${dir2} + ${dir3}',
     cn: '${inOut} + ${dir2} + ${dir3}',
     ko: '${inOut} + ${dir2} + ${dir3}',
   },
   double: {
     en: '${inOut} + ${dir2}',
+    de: '${inOut} + ${dir2}',
     fr: '${inOut} + ${dir2}',
     cn: '${inOut} + ${dir2}',
     ko: '${inOut} + ${dir2}',
   },
   awayFrom: {
     en: '${out} + avoid ${dir}',
+    de: '${out} + vermeide ${dir}',
     fr: '${out} + évitez ${dir}',
     cn: '${out} + 躲避 ${dir}',
     ko: '${out} + ${dir} 피하기',
@@ -99,18 +105,21 @@ const ttokrroneDesertTempestIds = Object.keys(ttokrroneDesertTempest);
 const ttokrroneDustdevilOutputStrings = {
   outOfHitbox: {
     en: 'Out of hitbox + stay out',
+    de: 'Raus aus der Hitbox + bleib drausen',
     fr: 'Extérieur de la hitbox + restez à l\'extérieur',
     cn: '判定圈外 + 待在外面',
     ko: '히트박스 밖으로 + 밖에 있기',
   },
   rotateFront: {
     en: 'Rotating frontal cleave',
+    de: 'Rotierende Frontal-Cleaves',
     fr: 'Cleave frontal tournant',
     cn: '旋转正面顺劈',
     ko: '전방 회전 장판',
   },
   rotateRear: {
     en: 'Rotating rear cleave',
+    de: 'Rotierende Hinten-Cleaves',
     fr: 'Cleave arrière tournant',
     cn: '旋转背后顺劈',
     ko: '후방 회전 장판',
@@ -575,33 +584,33 @@ Options.Triggers.push({
           awaySide = output.leftFlank();
           rotation = 3;
         }
-        if (pattern) {
-          const safeSpot = sandspoutPattern & pattern;
-          let backFrontSpot = TtokSafeSpots.All;
-          if (safeSpot & TtokSafeSpots.Back) {
-            backFrontSpot = TtokSafeSpots.Back;
-            dir1 = 'back';
-          } else if (safeSpot & TtokSafeSpots.Front) {
-            backFrontSpot = TtokSafeSpots.Front;
-            dir1 = 'front';
-          }
-          if (safeSpot & backFrontSpot & TtokSafeSpots.Right) {
-            dir2 = 'right';
-          } else if (safeSpot & backFrontSpot & TtokSafeSpots.Left) {
-            dir2 = 'left';
-          }
-          data.ttokSandOrbOnSet++;
-          data.ttokRotated = rotation;
+        if (pattern === undefined) {
           return {
-            alertText: output.triple({
-              inOut: output.outOfHitbox(),
-              dir2: output[dir1](),
-              dir3: output[dir2](),
-            }),
+            infoText: output.awayFrom({ out: output.outOfHitbox(), dir: awaySide }),
           };
         }
+        const safeSpot = sandspoutPattern & pattern;
+        let backFrontSpot = TtokSafeSpots.All;
+        if (safeSpot & TtokSafeSpots.Back) {
+          backFrontSpot = TtokSafeSpots.Back;
+          dir1 = 'back';
+        } else if (safeSpot & TtokSafeSpots.Front) {
+          backFrontSpot = TtokSafeSpots.Front;
+          dir1 = 'front';
+        }
+        if (safeSpot & backFrontSpot & TtokSafeSpots.Right) {
+          dir2 = 'right';
+        } else if (safeSpot & backFrontSpot & TtokSafeSpots.Left) {
+          dir2 = 'left';
+        }
+        data.ttokSandOrbOnSet++;
+        data.ttokRotated = rotation;
         return {
-          infoText: output.awayFrom({ out: output.outOfHitbox(), dir: awaySide }),
+          alertText: output.triple({
+            inOut: output.outOfHitbox(),
+            dir2: output[dir1](),
+            dir3: output[dir2](),
+          }),
         };
       },
     },
@@ -626,13 +635,18 @@ Options.Triggers.push({
         } else if (tempest & TtokSafeSpots.Out) {
           inOut = 'out';
         }
+        // must always be incremented even if the boss rotates
+        data.ttokSandOrbOnSet++;
+        if (pattern === undefined) {
+          return output[inOut]();
+        }
         if (tempest === TtokSafeSpots.InRight) {
           rightLeft = 'right';
         } else if (tempest === TtokSafeSpots.InLeft) {
           rightLeft = 'left';
         }
         // if the boss rotates we give up and only call out the Tempest portion.
-        if (pattern && data.ttokRotated === 0) {
+        if (data.ttokRotated === 0) {
           const safeSpot = tempest & pattern;
           if (safeSpot & TtokSafeSpots.Back) {
             backFrontSpot = TtokSafeSpots.Back;
@@ -650,10 +664,6 @@ Options.Triggers.push({
               rightLeft = 'left';
             }
           }
-        }
-        if (pattern) {
-          // must always be incremented even if the boss rotates
-          data.ttokSandOrbOnSet++;
         }
         if (rightLeft && backFront) {
           return output.triple({
@@ -723,6 +733,7 @@ Options.Triggers.push({
       outputStrings: {
         dodge: {
           en: 'Go to safe side of first dash => move in after',
+          de: 'Gehe auf die sichere Seite des ersten Ansturms => geh danach Rein',
           fr: 'Allez du côté sûr après le 1er dash => allez à l\'intérieur ensuite',
           cn: '前往首次冲锋两侧 => 躲进去',
           ko: '첫 돌진의 안전지대로 이동 => 그 후 첫 돌진 자리로',
@@ -741,6 +752,7 @@ Options.Triggers.push({
       outputStrings: {
         avoidSpheres: {
           en: 'Avoid exploding sand spheres',
+          de: 'Weiche explodierenden Sand-Sphären aus',
           fr: 'Évitez les sphères de sables explosives',
           cn: '躲避沙球爆炸',
           ko: '폭발하는 모래구체 피하기',
@@ -814,6 +826,16 @@ Options.Triggers.push({
         'Sansheya': '山谢亚',
         'Ttokrrone': '得酷热涅',
         'Sand Sphere': '沙球',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Keheniheyamewi': '케헤니헤야메위',
+        'Yehehetoaua\'pyo': '예헤헤토와포',
+        'Sansheya': '산셰야',
+        'Ttokrrone': '토크로네',
+        'Sand Sphere': '모래 구체',
       },
     },
   ],

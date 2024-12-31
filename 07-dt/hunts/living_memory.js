@@ -92,8 +92,10 @@ const cardOutputStrings = {
   unknown: Outputs.unknown,
   start: {
     en: 'Start ${dir}',
+    de: 'Starte ${dir}',
     fr: 'Début ${dir}',
     cn: '${dir} 开始',
+    ko: '${dir} 시작',
   },
 };
 Options.Triggers.push({
@@ -172,6 +174,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stack (face toward target)',
+          de: 'Sammeln (Schau das Ziel an)',
           fr: 'Pack (regardez la cible)',
           cn: '分摊 (面向目标)',
           ko: '쉐어 (대상 바라보기)',
@@ -328,8 +331,10 @@ Options.Triggers.push({
       outputStrings: {
         avoid: {
           en: 'Dodge puddles',
+          de: 'Weiche den Flächen aus',
           fr: 'Évitez les flaques',
           cn: '躲避圈圈',
+          ko: '장판 피하기',
         },
       },
     },
@@ -508,12 +513,11 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Cat\'s Eye': 'Katzenauge',
         'Sally the Sweeper': 'Sally (?:der|die|das) Fegerin',
         'The Forecaster': 'Wetterreporter',
-        // 'Mica the Magical Mu': 'Mica (?:der|die|das) Magisch[rs] Mu',
+        'Mica the Magical Mu': 'Mica (?:der|die|das) Magisch(?:e|er|es|en) Mu',
       },
     },
     {
@@ -541,6 +545,15 @@ Options.Triggers.push({
         'Sally the Sweeper': '清除者萨利',
         'The Forecaster': '天气预报机器人',
         'Mica the Magical Mu': '亩鼠米卡',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Cat\'s Eye': '캣츠아이',
+        'Sally the Sweeper': '청소부 샐리',
+        'The Forecaster': '기상예보기',
+        'Mica the Magical Mu': '마술다람쥐 마이카',
       },
     },
   ],

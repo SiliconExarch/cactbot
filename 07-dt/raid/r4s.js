@@ -91,23 +91,31 @@ const witchHuntAlertOutputStrings = {
   },
   tanksNear: {
     en: 'Tanks Close (Party Far)',
+    de: 'Tanks nahe (Gruppe weit weg)',
     fr: 'Tanks près (Groupe au loin)',
     cn: '坦克近 (小队远)',
+    ko: '탱커 가까이 (본대 멀리)',
   },
   healersFar: {
     en: 'Healers Far (Party Close)',
+    de: 'Heiler weit weg (Gruppe nahe)',
     fr: 'Healers loin (Groupe près)',
     cn: '治疗远 (小队近)',
+    ko: '힐러 멀리 (본대 가까이)',
   },
   meleeNear: {
     en: 'Melee Close (Party Far)',
+    de: 'Nahkämpfer nahe (Gruppe weit weg)',
     fr: 'DPS Mêlée près (Groupe au loin)',
     cn: '近战近 (小队远)',
+    ko: '근딜 가까이 (본대 멀리)',
   },
   rangedFar: {
     en: 'Ranged Far (Party Close)',
+    de: 'Fernkämpfer weit weg (Gruppe nahe)',
     fr: 'DPS Distance loin (Groupe près)',
     cn: '远程远 (小队近)',
+    ko: '원딜 멀리 (본대 가까이)',
   },
   combo: {
     en: '${inOut} => ${bait}',
@@ -187,7 +195,7 @@ const conductorCurrentStringsNoStrat = {
     fr: 'Cône éloigné sur Vous',
     ja: '自分から遠い人に扇範囲',
     cn: '远雷点名',
-    ko: '원거리 화살표 대상자',
+    ko: '멀리 화살표 대상자',
   },
   proximateCurrent: {
     en: 'Near Cone on You',
@@ -195,7 +203,7 @@ const conductorCurrentStringsNoStrat = {
     fr: 'Cône proche sur Vous',
     ja: '自分から近い人に扇範囲',
     cn: '近雷点名',
-    ko: '근거리 화살표 대상자',
+    ko: '가까이 화살표 대상자',
   },
   spinningConductorSupport: {
     en: 'Small AoE on You',
@@ -241,38 +249,52 @@ const conductorCurrentStringsNoStrat = {
 const conductorCurrentStringsDNStrat = {
   remoteCurrent: {
     en: 'Front of Middle (Far Cone)',
+    de: 'Vorne mittig (Fern-Kegel)',
     fr: 'Devant au milieu (loin du cône)',
     cn: '中前 (远扇形)',
+    ko: '앞 가운데 (멀리 화살표)',
   },
   proximateCurrent: {
     en: 'Front of Middle (Near Cone)',
+    de: 'Vorne mittig (Nah-Kegel)',
     fr: 'Devant au milieu (près du cône)',
     cn: '中前 (近扇形)',
+    ko: '앞 가운데 (가까이 화살표)',
   },
   spinningConductorSupport: {
     en: 'Front Left (Small AoE)',
+    de: 'Vorne links (kleine AoE)',
     fr: 'Devant à gauche (petite AoE)',
     cn: '左前 (小圈)',
+    ko: '앞 왼쪽 (작은 원형징)',
   },
   spinningConductorDPS: {
     en: 'Front Right (Small AoE)',
+    de: 'Vorne rechts (kleine AoE)',
     fr: 'Devant à droite (petite AoE)',
     cn: '右前 (小圈)',
+    ko: '앞 오른쪽 (작은 원형징)',
   },
   roundhouseConductorSupport: {
     en: 'Front Left (Donut AoE)',
+    de: 'Vorne links (Donut AoE)',
     fr: 'Devant à gauche (AoE en donut)',
     cn: '左前 (月环)',
+    ko: '앞 왼쪽 (도넛징)',
   },
   roundhouseConductorDPS: {
     en: 'Front Right (Donut AoE)',
+    de: 'Vorne rechts (Donut AoE)',
     fr: 'Devant à droite (AoE en donut)',
     cn: '右前 (月环)',
+    ko: '앞 오른쪽 (도넛징)',
   },
   colliderConductor: {
     en: 'Middle, Behind Current (Get Hit by Cone)',
+    de: 'Mitte, hinter Leitstrom (Lass dich vom Kegel treffen)',
     fr: 'Milieu à l\'arrière (prenez le cône)',
     cn: '中间, 扇形后 (吃扇形)',
+    ko: '가운데, 화살표 뒤 (화살표 장판 맞기)',
   },
 };
 Options.Triggers.push({
@@ -283,23 +305,35 @@ Options.Triggers.push({
       id: 'ionCluster',
       name: {
         en: 'Ion Cluster Debuff Strategy',
+        de: 'Ionen-Ansammlung Debuff Strategie',
         fr: 'Mécanique pour Accumulation d\'ions',
         cn: '离子簇 Debuff 策略',
+        ko: '이온 클러스터 디버프 전략',
       },
       comment: {
         en: `Strategy for resolving debuffs during Ion Cluster.
              None: Call the debuff only, no strategy.
-             DN: use rivet positions based on the shabin pastebin.`,
+             DN: use rivet positions based on the <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a>.`,
+        de: `Strategie zur Auflösung von Debuffs während Ionen-Ansammlung.
+            None: Nenn den Debuff, keine Strategie.
+            DN: Besnutze die Nieten-Positionen, basierend auf <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a>.`,
         fr: `Mécanique pour résoudre Accumulation d\'ions.
              Aucune : Affiche seulement le debuff, aucune stratégie.
-             DN : utilise les positions du pastebin de shabin.`,
+             DN : utilise les positions du <a href="https://pastebin.com/teF90QGm" target="_blank">pastebin de shabin</a>.`,
         cn: `在 离子簇 机制中处理 debuff 的策略。
              无: 只播报 Debuff, 不使用策略。
-             DN: 使用基于 shabin pastebin 的固定站位。`,
+             DN: 使用基于 <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a> 的固定站位。`,
+        ko: `이온 클러스터 중 디버프를 해결하는 방법.
+             없음: 디버프만 알림, 전략 없음.
+             DN: <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a>기반의 고정 위치 사용.`,
       },
       type: 'select',
       options: {
         en: {
+          'None': 'none',
+          'DN': 'DN',
+        },
+        de: {
           'None': 'none',
           'DN': 'DN',
         },
@@ -311,6 +345,10 @@ Options.Triggers.push({
           '无': 'none',
           'DN': 'DN',
         },
+        ko: {
+          '없음': 'none',
+          'DN': 'DN',
+        },
       },
       default: 'none',
     },
@@ -318,8 +356,10 @@ Options.Triggers.push({
       id: 'witchHunt',
       name: {
         en: 'Witch Hunt Bait Strategy',
+        de: 'Hexenjagd Köder Strategie',
         fr: 'Mécanique pour Piqué fulgurant',
         cn: '魔女狩猎诱导策略',
+        ko: '마녀 사냥 유도 전략',
       },
       comment: {
         en: `Strategy for baiting Witch Hunt AoEs.<br>
@@ -327,6 +367,11 @@ Options.Triggers.push({
              DN: DN uptime strategy, with flexible priority where Tanks take the first near bait,
              Healers take the first far bait, Melee DPS take the second near bait, and finally
              Ranged DPS take the second far bait.`,
+        de: `Strategie zum ködern der Hexenjagd.<br>
+             None: Zeige beides, Party und Köder Positionen, ohne specifische Strategie.<br>
+             DN: DN uptime Strategie, mit flexibler Priorität, bei der Tanks den ersten Nah-Köder,
+             Heiler die ersten entfernten Köder, Nahkämpfer die weiten Nah-Köder und schlussendlich
+             Fernkämpfer die zweiten entfernten Köder nehmen.`,
         fr: `Stratégie pour résoudre Piqué fulgurant.<br>
              Aucune : Affiche les positions du groupe de bait sans stratégie spécifique.<br>
              DN : Stratégie DN Uptime, avec une priorité ajustée ou les tanks prennent le bait le plus proche,
@@ -337,10 +382,18 @@ Options.Triggers.push({
              DN: DN uptime 策略, 优先级灵活, 坦克负责第一个近诱导,
              治疗负责第一个远诱导, 近战 DPS 负责第二个近诱导,
              最后远程 DPS 负责第二个远诱导。`,
+        ko: `마녀 사냥 장판 유도 전략.<br>
+             없음: 파티 위치와 유도 위치를 모두 알림, 특별한 전략 없음.<br>
+             DN: DN 업타임 전략. 탱커가 첫 번째 근접 유도를, 힐러가 첫 번째 원거리 유도를,
+             근거리 딜러가 두 번째 근접 유도를, 마지막으로 원거리 딜러가 두 번째 원거리 유도를 합니다.`,
       },
       type: 'select',
       options: {
         en: {
+          'None': 'none',
+          'DN': 'DN',
+        },
+        de: {
           'None': 'none',
           'DN': 'DN',
         },
@@ -352,6 +405,10 @@ Options.Triggers.push({
           '无': 'none',
           'DN': 'DN',
         },
+        ko: {
+          '없음': 'none',
+          'DN': 'DN',
+        },
       },
       default: 'none',
     },
@@ -359,8 +416,10 @@ Options.Triggers.push({
       id: 'sunrise',
       name: {
         en: 'Sunrise Sabbath Strategy',
+        de: 'Morgensonnensabbat Strategie',
         fr: 'Mécanique pour Diablerie obscure - Aurore',
         cn: '黑色安息日的日出策略',
+        ko: 'Sunrise Sabbath 전략',
       },
       comment: {
         en: `Strategy for resolving Sunrise Sabbath.<br>
@@ -368,6 +427,11 @@ Options.Triggers.push({
              Snakes Prio: Popular priority system used in NA PF. Support players
              start looking for tower or cannon from the northwest going counter clockwise.
              DPS players look for tower or cannon from the north going clockwise.`,
+        de: `Strategie zum lösen von Morgensonnensabbat.<br>
+             None: Nenne den Debuff, beide Orte der Türme und passende Türme.<br>
+             Snakes Prio: Populäres prioritäten System des NA PFs. Support Spieler
+             starten Nord-Westen und suchen ihre Kanone gegen den Uhrzeigersinn.
+             DPS Spieler schauen Norden im Uhrzeigersinn nach ihrer Kanone.`,
         fr: `Stratégie pour résoudre Diablerie obscure - Aurore<br>
              Aucune : Affiche les debuffs pour l\'apparition des tours et également les tours à prendre.<br>
              Snakes Prio: Mécanique populaire sur les centres de données NA en PF. Les supports
@@ -378,10 +442,20 @@ Options.Triggers.push({
              Snakes Prio: 流行于北美招募版的优先级系统。
              T 奶玩家从西北方开始逆时针寻找塔或炮。
              DPS 玩家从正北方开始顺时针寻找塔或炮。`,
+        ko: `Sunrise Sabbath 해결 전략.<br>
+             없음: 디버프, 기둥 생성 및 일치하는 기둥만 알림.<br>
+             Snakes Prio: 북미에서 널리 사용되는 우선순위 시스템.
+             탱/힐은 북서부터 반시계 방향으로 기둥이나 대포를 찾습니다.
+             딜러는 북쪽부터 시계 방향으로 기둥이나 대포를 찾습니다.
+        `,
       },
       type: 'select',
       options: {
         en: {
+          'None': 'none',
+          'Snakes Prio': 'snakePrio',
+        },
+        de: {
           'None': 'none',
           'Snakes Prio': 'snakePrio',
         },
@@ -393,6 +467,10 @@ Options.Triggers.push({
           '无': 'none',
           'Snakes Prio': 'snakePrio',
         },
+        ko: {
+          '없음': 'none',
+          'Snakes Prio': 'snakePrio',
+        },
       },
       default: 'none',
     },
@@ -400,13 +478,17 @@ Options.Triggers.push({
       id: 'sunriseUptime',
       name: {
         en: 'Sunrise Sabbath Uptime Cannon Baits',
+        de: 'Morgensonnensabbat - Uptime - Kanonen ködern',
         fr: 'Diablerie obscure - Aurore Uptime - Bait des canons',
         cn: '黑色安息日的日出 使用 uptime 炮诱导打法',
+        ko: 'Sunrise Sabbath 업타임 대포 유도',
       },
       comment: {
         en: 'Call cannon baits assuming the AutoCAD waymark uptime cannon bait spots.',
+        de: 'Nenne Kanonen-Köder bei verwendung der AutoCAD-Wegmarkierungen',
         fr: 'Affiche les bait des canons selon les marqueurs AutoCAD.',
         cn: '基于 AutoCAD 标点的 uptime 炮诱导打法播报炮诱导。',
+        ko: 'AutoCAD 지면 표식을 기반으로 대포 유도를 알립니다.',
       },
       type: 'checkbox',
       default: false,
@@ -726,19 +808,27 @@ Options.Triggers.push({
         },
         tank: {
           en: 'Tanks',
+          de: 'Tanks',
           cn: '坦克',
+          ko: '탱커',
         },
         healer: {
           en: 'Healers',
+          de: 'Heiler',
           cn: '治疗',
+          ko: '힐러',
         },
         melee: {
           en: 'Melee',
+          de: 'Nahkämpfer',
           cn: '近战',
+          ko: '근딜',
         },
         ranged: {
           en: 'Ranged',
+          de: 'Fernkämpfer',
           cn: '远程',
+          ko: '원딜',
         },
         separator: {
           en: ' => ',
@@ -1961,7 +2051,7 @@ Options.Triggers.push({
           fr: 'Debuff jaune court (Canons en 1er)',
           ja: '短い黄色デバフ (ビーム誘導から)',
           cn: '短黄 (先引导)',
-          ko: '짧은 노란색 디버프 (레이저 먼저)',
+          ko: '짧은 노란색 디버프 (대포 먼저)',
         },
         blueShort: {
           en: 'Short Blue Debuff (Cannons First)',
@@ -1969,7 +2059,7 @@ Options.Triggers.push({
           fr: 'Debuff bleu court (Canons en 1er)',
           ja: '短い青色デバフ (ビーム誘導から)',
           cn: '短蓝 (先引导)',
-          ko: '짧은 파란색 디버프 (레이저 먼저)',
+          ko: '짧은 파란색 디버프 (대포 먼저)',
         },
       },
     },
@@ -2159,11 +2249,15 @@ Options.Triggers.push({
         },
         baitNormal: {
           en: 'Point ${bait}',
+          de: 'Zeige ${bait}',
           cn: '指向 (${bait})',
+          ko: '${bait}쪽으로',
         },
         baitUptime: {
           en: 'Stand ${bait} side',
+          de: 'Stehe ${bait} Seite',
           cn: '站 ${bait} 侧',
+          ko: '${bait}쪽 면에 서기',
         },
         yellowShort: {
           en: 'Blue Cannon (${loc}) - ${bait}',
@@ -2171,7 +2265,7 @@ Options.Triggers.push({
           fr: 'Canon bleu ${loc}) - ${bait}',
           ja: '青いビーム誘導 (${loc}) - ${bait}',
           cn: '蓝激光 (${loc}) - ${bait}',
-          ko: '파란 레이저 (${loc}) - ${bait}',
+          ko: '파란 대포 (${loc}) - ${bait}',
         },
         blueShort: {
           en: 'Yellow Cannon (${loc}) - Point ${bait}',
@@ -2179,7 +2273,7 @@ Options.Triggers.push({
           fr: 'Canon jaune ${loc}) - ${bait}',
           ja: '黄色いビーム誘導 (${loc}) - ${bait}',
           cn: '黄激光 (${loc}) - ${bait}',
-          ko: '노란 레이저 (${loc}) - ${bait}',
+          ko: '노란 대포 (${loc}) - ${bait}',
         },
       },
     },
